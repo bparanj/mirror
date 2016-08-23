@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ruby Editor </title>  
+    <link rel="stylesheet" href="lib/codemirror.css">
+    <script src="lib/codemirror.js"></script>
+    <script src="addon/edit/matchbrackets.js"></script>
+    <script src="mode/ruby/ruby.js"></script>  
+  </head>
+  <body>
+
+  <h1>Code Mirror</h1>
+    <form>
+		<textarea id="code" name="code"> 
+def factorial(n)
+  if n == 0
+    1
+  else
+    n * fact(n-1)
+  end
+end
+	  </textarea>
+    </form>
+	
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        mode: "text/x-ruby",
+        matchBrackets: true,
+        indentUnit: 4
+      });
+    </script>
+
+  </body>
+</html>
