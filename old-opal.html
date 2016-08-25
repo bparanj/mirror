@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Try Opal: Browser compiler and REPL</title>
+</head>
+  <body>
+    For executing Ruby code from gist and pastie: 
+    http://opalrb.org/docs/guides/v0.10.1/opal_parser.html
+
+    <h1>Input</h1>
+    <textarea id="input" rows="5" cols="50">
+puts self
+    </textarea>
+    <button id="compile" onclick="compile()">Run</button>
+
+    <h1>Output</h1>
+    <textarea id="output" rows="5" cols="50"></textarea>
+
+    <script src="http://cdn.opalrb.org/opal/current/opal.min.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/opal-parser.min.js"></script>
+    <script type="text/javascript">Opal.load('opal-parser')</script>
+    <script type='text/javascript'>
+      function compile() {
+        const input = document.getElementById("input");
+		const output = document.getElementById("output");
+		output.value = eval(Opal.compile(input.value));
+	  }
+	  document.onload = function() { compile(); }
+    </script>
+  </body>
+</html>

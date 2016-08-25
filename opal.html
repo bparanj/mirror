@@ -4,30 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Try Opal: Browser compiler and REPL</title>
+  <link rel="stylesheet" href="lib/codemirror.css">
+  <script src="lib/codemirror.js"></script>
+  <script src="addon/edit/matchbrackets.js"></script>
+  <script src="mode/ruby/ruby.js"></script>  
 </head>
   <body>
-    For executing Ruby code from gist and pastie: 
-    http://opalrb.org/docs/guides/v0.10.1/opal_parser.html
-
     <h1>Input</h1>
-    <textarea id="input" rows="5" cols="50">
-puts self
-    </textarea>
-    <button id="compile" onclick="compile()">Run</button>
+    <textarea id="input" rows="5" cols="50">Integer('10')</textarea>
+    <button id="compile" onclick="mycompile()">Run</button>
 
     <h1>Output</h1>
     <textarea id="output" rows="5" cols="50"></textarea>
 
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
+        lineNumbers: true,
+        mode: "text/x-ruby",
+        matchBrackets: true,
+        indentUnit: 4
+      });
+    </script>
+
     <script src="http://cdn.opalrb.org/opal/current/opal.min.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/native.min.js"></script>
     <script src="http://cdn.opalrb.org/opal/current/opal-parser.min.js"></script>
     <script type="text/javascript">Opal.load('opal-parser')</script>
+    <script type="text/javascript">Opal.load('native')</script>
     <script type='text/javascript'>
-      function compile() {
+      function mycompile() {
         const input = document.getElementById("input");
 		const output = document.getElementById("output");
-		output.value = eval(Opal.compile(input.value));
+   	 	setTimeout(output.value = eval(Opal.compile(input.value)), 1000);
 	  }
-	  document.onload = function() { compile(); }
     </script>
   </body>
 </html>

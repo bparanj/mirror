@@ -1,0 +1,3 @@
+    For executing Ruby code from gist and pastie: 
+	<script src="http://cdn.opalrb.org/opal/current/native.min.js"></script>
+    http://opalrb.org/docs/guides/v0.10.1/opal_parser.html

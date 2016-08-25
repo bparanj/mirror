@@ -12,18 +12,14 @@
   <body>
 
   <h1>Code Mirror</h1>
-    <form>
-		<textarea id="code" name="code"> 
-def factorial(n)
-  if n == 0
-    1
-  else
-    n * fact(n-1)
-  end
-end
-	  </textarea>
-    </form>
-	
+    <form action='' onsubmit="return compile()" method='post'>
+	  <textarea id="code" name="code">100+1</textarea>
+	  
+	  <h1>Output</h1>
+	  <textarea id="result" rows="5" cols="50"></textarea>
+      
+      <button id="compile">Run</button>
+    </form>  
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
@@ -31,6 +27,18 @@ end
         matchBrackets: true,
         indentUnit: 4
       });
+    </script>
+
+    <script src="http://cdn.opalrb.org/opal/current/opal.min.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/opal-parser.min.js"></script>
+    <script type="text/javascript">Opal.load('opal-parser')</script>
+    <script type='text/javascript'>
+      function compile() {
+        const input = document.getElementById("code");
+        const output = document.getElementById("result");
+        output.value = eval(Opal.compile(input.value));
+		return false;
+	  }
     </script>
 
   </body>

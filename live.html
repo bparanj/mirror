@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ruby Editor </title>  
+    <link rel="stylesheet" href="lib/codemirror.css">
+    <script src="lib/codemirror.js"></script>
+    <script src="addon/edit/matchbrackets.js"></script>
+    <script src="mode/ruby/ruby.js"></script>
+    <script src="http://cdn.opalrb.org/opal/current/opal.min.js"></script>
+     <script src="http://cdn.opalrb.org/opal/current/opal-parser.min.js"></script>
+       <script>
+         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+           lineNumbers: true,
+           mode: "text/x-ruby",
+           matchBrackets: true,
+           indentUnit: 4
+         });
+       </script>
+
+
+     <script type="text/javascript">Opal.load('opal-parser')</script>
+     <script type='text/javascript'>
+      function _compile() {
+         const input = document.getElementById("code");
+   	  	 const output = document.getElementById("output");
+    	 setTimeout(output.value = eval(Opal.compile(input.value)), 1000);
+      }
+     </script>
+
+
+  </head>
+  <body>
+
+  <h1>Code Mirror</h1>
+    <form>
+      <textarea id="code" name="code"> 
+100 + 1
+     </textarea>
+      <button id="compile" onclick="_compile()">Run</button>
+
+      <h1>Output</h1>
+      <textarea id="output" rows="5" cols="50"></textarea>
+
+
+    </form>
+
+
+
+  </body>
+</html>
